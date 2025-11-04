@@ -1,0 +1,43 @@
+\documentclass{scrartcl}
+\usepackage[layout=a3paper,margin=1in,centering,includefoot]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{calendar}
+
+% Taking from https://tex.stackexchange.com/a/10199
+\makeatletter%
+\tikzoption{day headings}{\tikzstyle{day heading}=[#1]}
+\tikzstyle{day heading}=[]
+\tikzstyle{day letter headings}=[
+    execute before day scope={ \ifdate{day of month=1}{%
+      \pgfmathsetlength{\pgf@ya}{\tikz@lib@cal@yshift}%
+      \pgfmathsetlength\pgf@xa{\tikz@lib@cal@xshift}%
+      \pgftransformyshift{-\pgf@ya}
+      \foreach \d/\l in {0/M,1/T,2/W,3/T,4/F,5/S,6/S} {
+        \pgf@xa=\d\pgf@xa%
+        \pgftransformxshift{\pgf@xa}%
+        \pgftransformyshift{\pgf@ya}%
+        \node[every day,day heading]{\l};%
+      } 
+    }{}%
+  }%
+]
+
+\makeatother%
+
+\begin{document}
+\pagestyle{empty}
+\begin{tikzpicture}
+    \calendar [
+        dates=\year-\month-01 to \year-\month-last,
+        week list,
+        day text=\%d-,
+        day xshift=\textwidth/10,
+        day yshift=\textwidth/10,
+        month label above centered,
+        month text={\LARGE {\%mt} \%y-},
+        day letter headings
+        ]
+        [\draw (0,0) rectangle (\textwidth/10,\textwidth/10)]
+      if (equals=2025-11-05) [red];
+\end{tikzpicture}
+\end{document}
