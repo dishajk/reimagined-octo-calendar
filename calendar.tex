@@ -15,7 +15,7 @@
       \foreach \d/\l in {0/M,1/T,2/W,3/T,4/F,5/S,6/S} {
         \pgf@xa=\d\pgf@xa%
         \pgftransformxshift{\pgf@xa}%
-        \pgftransformyshift{\pgf@ya}%
+        \pgftransformyshift{20pt}%
         \node[every day,day heading]{\l};%
       } 
     }{}%
@@ -28,6 +28,7 @@
 \pagestyle{empty}
 \begin{tikzpicture}
     \calendar [
+      name=cal,
         dates=\year-\month-01 to \year-\month-last,
         week list,
         day text=\%d-,
@@ -37,7 +38,9 @@
         month text={\LARGE {\%mt} \%y-},
         day letter headings
         ]
-        [\draw (0,0) rectangle (\textwidth/10,\textwidth/10)]
-      if (equals=2025-11-05) [red];
-\end{tikzpicture}
+      if (equals=\year-\month-05) [red]
+      if (all) {
+      \draw[gray] ++({-\textwidth/20-7pt},10pt) rectangle ++(\textwidth/10,-\textwidth/10);
+      };
+  \end{tikzpicture}
 \end{document}
