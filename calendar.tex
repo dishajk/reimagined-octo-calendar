@@ -1,5 +1,5 @@
-\documentclass{scrartcl}
-\usepackage[layout=a3paper,margin=1in,centering,includefoot]{geometry}
+\documentclass[a3paper]{article}
+\usepackage[margin=1in,centering,includefoot]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{calendar}
 
@@ -15,7 +15,7 @@
       \foreach \d/\l in {0/M,1/T,2/W,3/T,4/F,5/S,6/S} {
         \pgf@xa=\d\pgf@xa%
         \pgftransformxshift{\pgf@xa}%
-        \pgftransformyshift{20pt}%
+        \pgftransformyshift{3em}%
         \node[every day,day heading]{\l};%
       } 
     }{}%
@@ -26,21 +26,24 @@
 
 \begin{document}
 \pagestyle{empty}
+\centering
 \begin{tikzpicture}
     \calendar [
       name=cal,
         dates=\year-\month-01 to \year-\month-last,
         week list,
-        day text=\%d-,
-        day xshift=\textwidth/10,
-        day yshift=\textwidth/10,
+        day text={\Large\%d-},
+        day xshift=\textwidth/7,
+        day yshift=\textwidth/7,
         month label above centered,
-        month text={\LARGE {\%mt} \%y-},
+        month text={\Huge {\%mt} \%y-},
         day letter headings
         ]
-      if (equals=\year-\month-05) [red]
+      if (equals=\year-\month-05) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
+      }
       if (all) {
-      \draw[gray] ++({-\textwidth/20-7pt},10pt) rectangle ++(\textwidth/10,-\textwidth/10);
+      \draw[gray] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
       };
   \end{tikzpicture}
 \end{document}
