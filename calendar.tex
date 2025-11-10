@@ -40,10 +40,26 @@
         day letter headings
         ]
       if (equals=\year-\month-05) {
-        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {\large Holiday};
+      }
+      if (equals=\year-\month-08) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      }
+            if (equals=\year-\month-22) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      }
+            if (equals=\year-\month-23) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large KwK};
       }
       if (all) {
       \draw[gray] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
       };
-  \end{tikzpicture}
+\end{tikzpicture}
+\vspace{\fill}
+\section*{Notes}
+\vspace{\fill}
+\begin{tikzpicture}
+  \foreach \i in {1,2,...,5}
+    \draw (0,1.25*\i)  -- (0.8*\textwidth,1.25*\i);
+\end{tikzpicture}
 \end{document}
