@@ -1,0 +1,99 @@
+name: Build calendar PDF
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: 'Year (e.g., 2025)'
+        required: false
+      month:
+        description: 'Month (01-12)'
+        required: false
+      holidays:
+        description: 'Comma-separated list of YYYY-MM-DD holiday dates'
+        required: false
+      events:
+        description: 'JSON array of {"date": "...", "name": "..."}'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: calendar.tex
+          working_directory: .
+          args: -pdf -interaction=nonstopmode -halt-on-error
+      
+      - name: Replace placeholders
+        run: |
+          # Compute defaults
+          year="${{ github.event.inputs.year }}"
+          month="${{ github.event.inputs.month }}"
+
+          if [ -z "$year" ]; then
+            year=$(date +%Y)
+          fi
+          if [ -z "$month" ]; then
+            month=$(date +%m)
+          fi
+
+          holidays="${{ github.event.inputs.holidays }}"
+          events="${{ github.event.inputs.events }}"
+
+          echo "Using year=$year, month=$month"
+
+          # Start from the template and substitute year/month
+          sed "s/{{year}}/$year/g; s/{{month}}/$month/g" calendar.tex > compiled.tex
+
+          # Prepare temp files for holidays and events
+          echo "" > holidays.tex
+          echo "" > events.tex
+
+          # --- Holidays ---
+          if [ -n "$holidays" ]; then
+            IFS=',' read -ra HOLIDAYS <<< "$holidays"
+            for date in "${HOLIDAYS[@]}"; do
+              echo "if (equals=$date) { \\filldraw [red!20] ++({-\\textwidth/14-1em},2em) rectangle ++(\\textwidth/7,-\\textwidth/7) node[pos=.5, align=left, black] {\\large Holiday}; }" >> holidays.tex
+            done
+          fi
+
+          # --- Events ---
+          if [ -n "$events" ]; then
+            echo "$events" | jq -c '.[]' | while read -r evt; do
+              date=$(echo "$evt" | jq -r '.date')
+              name=$(echo "$evt" | jq -r '.name')
+              echo "if (equals=$date) { \\draw ++({-\\textwidth/14-1em},2em) rectangle ++(\\textwidth/7,-\\textwidth/7) node[pos=.5, align=left, black, text width=\\textwidth/8] {\\large $name}; }" >> events.tex
+            done
+          fi
+
+          # Replace placeholders with generated TikZ code
+          holidays_code=$(cat holidays.tex | sed ':a;N;$!ba;s/\n/\\\\n/g')
+          events_code=$(cat events.tex | sed ':a;N;$!ba;s/\n/\\\\n/g')
+
+          sed -i "s|{{holidays}}|$holidays_code|g" compiled.tex
+          sed -i "s|{{events}}|$events_code|g" compiled.tex
+
+          echo "LaTeX placeholders replaced successfully."
+      
+      - name: Compile PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: generated.tex
+
+      - name: Upload PDF to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          keep_files: true
+          force_orphan: false
+          exclude_assets: |
+            !generated.pdf

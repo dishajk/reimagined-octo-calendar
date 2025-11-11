@@ -30,7 +30,7 @@
 \begin{tikzpicture}
     \calendar [
       name=cal,
-        dates={{year}}-{{month}}-01 to {{year}}-{{month}}-last,
+        dates=\year-\month-01 to \year-\month-last,
         week list,
         day text={\Large\%d-},
         day xshift=\textwidth/7,
@@ -39,14 +39,21 @@
         month text={\Huge {\%mt} \%y-},
         day letter headings
         ]
-      % if (equals={{year}}-{{month}}-05) {
-      %   \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {\large Holiday};
-      % }
-      {{holidays}}
-      % if (equals={{year}}-{{month}}-08) {
-      %   \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
-      % }
-      {{events}}
+      if (equals=\year-\month-05) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {\large Holiday};
+      }
+      if (equals=\year-\month-08) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      }
+      if (equals=\year-\month-22) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      }
+      if (equals=\year-\month-30) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large PriSM};
+      }
+            if (equals=\year-\month-23) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large KwK};
+      }
       if (all) {
       \draw[gray] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
       };
