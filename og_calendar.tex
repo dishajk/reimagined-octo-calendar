@@ -1,4 +1,5 @@
 \documentclass[a3paper]{article}
+% \documentclass[a4paper]{article}
 \usepackage[margin=1in,centering,includefoot]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{calendar}
@@ -30,19 +31,38 @@
 \begin{tikzpicture}
     \calendar [
       name=cal,
-        dates=\year-\month-01 to \year-\month-last,
+        dates=2026-01-01 to 2026-01-last,
         week list,
         day text={\Large\%d-},
+        % day text={\%d-},
         day xshift=\textwidth/7,
         day yshift=\textwidth/7,
         month label above centered,
         month text={\Huge {\%mt} \%y-},
         day letter headings
         ]
-      if (equals=\year-\month-05) {
+      if (equals=2026-01-26) {
         \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {\large Holiday};
       }
       if (equals=\year-\month-08) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      }
+      if (equals=2026-01-10) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      }
+      if (equals=2026-01-17) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      }
+      if (equals=2026-02-07) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      }
+      if (equals=2026-02-21) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      }
+      if (equals=2026-03-07) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      }
+      if (equals=2026-01-24) {
         \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
       }
       if (equals=\year-\month-22) {
