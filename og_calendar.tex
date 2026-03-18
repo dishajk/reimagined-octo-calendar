@@ -1,5 +1,6 @@
-\documentclass[a3paper]{article}
-% \documentclass[a4paper]{article}
+% \documentclass[a5paper, landscape]{article}
+\documentclass[a4paper]{article}
+% \usepackage[margin=15mm,centering,includefoot]{geometry}
 \usepackage[margin=1in,centering,includefoot]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{calendar}
@@ -31,9 +32,9 @@
 \begin{tikzpicture}
     \calendar [
       name=cal,
-        dates=2026-01-01 to 2026-01-last,
+        dates=2026-03-01 to 2026-03-last,
         week list,
-        day text={\Large\%d-},
+        day text={\footnotesize\%d-},
         % day text={\%d-},
         day xshift=\textwidth/7,
         day yshift=\textwidth/7,
@@ -41,48 +42,83 @@
         month text={\Huge {\%mt} \%y-},
         day letter headings
         ]
-      if (equals=2026-01-26) {
-        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {\large Holiday};
+      if (equals=2026-03-19) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
       }
-      if (equals=\year-\month-08) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      if (equals=2026-03-21) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
       }
-      if (equals=2026-01-10) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
+      if (equals=2026-03-31) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday\\VA};
       }
-      if (equals=2026-01-17) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      if (equals=\year-04-11) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
       }
-      if (equals=2026-02-07) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      if (equals=2026-04-25) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
       }
-      if (equals=2026-02-21) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      if (equals=2026-03-20) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {Online MCI};
       }
-      if (equals=2026-03-07) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large Maths is Fun @SGB};
+      if (equals=2026-03-22) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {Maths is Fun @SGB\\KwK};
       }
-      if (equals=2026-01-24) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
-      }
-      if (equals=\year-\month-22) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large ICTS-RRI Maths Circle};
-      }
-      if (equals=\year-\month-30) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large PriSM};
-      }
-            if (equals=\year-\month-23) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {\large KwK};
+      if (equals=\year-\month-23) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
       }
       if (all) {
       \draw[gray] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
       };
 \end{tikzpicture}
-\vspace{\fill}
-\section*{Notes}
-\vspace{\fill}
+\newpage
+\pagestyle{empty}
+\centering
 \begin{tikzpicture}
-  \foreach \i in {1,2,...,5}
-    \draw (0,1.25*\i)  -- (0.8*\textwidth,1.25*\i);
+    \calendar [
+      name=cal,
+        dates=2026-04-01 to 2026-04-last,
+        week list,
+        day text={\footnotesize\%d-},
+        % day text={\%d-},
+        day xshift=\textwidth/7,
+        day yshift=\textwidth/7,
+        month label above centered,
+        month text={\Huge {\%mt} \%y-},
+        day letter headings
+        ]
+      if (equals=2026-04-03) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
+      }
+      if (equals=2026-03-21) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
+      }
+      if (equals=2026-03-31) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday\\VA};
+      }
+      if (equals=\year-04-11) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
+      }
+      if (equals=2026-04-25) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
+      }
+      if (equals=2026-04-04) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {BMTC};
+      }
+      if (equals=2026-04-09) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {VA};
+      }
+      if (equals=\year-\month-11) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
+      }
+      if (all) {
+      \draw[gray] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
+      };
 \end{tikzpicture}
+% \vspace{\fill}
+% \section*{Notes}
+% \vspace{\fill}
+% \begin{tikzpicture}
+%   \foreach \i in {1,2,...,5}
+%     \draw (0,1.25*\i)  -- (0.8*\textwidth,1.25*\i);
+% \end{tikzpicture}
 \end{document}
