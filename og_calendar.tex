@@ -1,10 +1,12 @@
-\documentclass[a5paper, landscape]{article}
-% \documentclass[a4paper]{article}
+% \documentclass[a5paper, landscape]{article}
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\newfontfamily{\kan}[Script=Kannada]{Noto Sans Kannada}
 % \usepackage[margin=15mm,centering,includefoot]{geometry}
 \usepackage[margin=1in,centering,includefoot]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{calendar}
-
+\usepackage[none]{hyphenat}
 % Taking from https://tex.stackexchange.com/a/10199
 \makeatletter%
 \tikzoption{day headings}{\tikzstyle{day heading}=[#1]}
@@ -32,42 +34,42 @@
 \begin{tikzpicture}
     \calendar [
       name=cal,
-        dates=2026-05-01 to 2026-05-last,
+        dates=2026-07-01 to 2026-07-last,
         week list,
         day text={\footnotesize\%d-},
         % day text={\%d-},
         day xshift=\textwidth/7,
         day yshift=\textwidth/7,
         month label above centered,
-        % month text={\Huge {\%mt} \%y-},
-        month text={\Large {\%mt} \%y-},
+        month text={\Huge {\%mt} \%y-},
+        % month text={\Large {\%mt} \%y-},
         day letter headings
         ]
-      if (equals=2026-05-01) {
-        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday\\Online MCI};
+      if (equals=2026-06-26) {
+        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
       }
       if (equals=2026-05-27) {
         \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
       }
-      % if (equals=2026-03-31) {
-      %   \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday\\VA};
-      % }
-      if (equals=\year-05-09) {
+      if (equals=2026-07-03) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {{\kan ದೈನಂದಿನ ವಿಜ್ಞಾನ}\\Online MCI};
+      }
+      if (equals=\year-07-11,equals=2026-07-25) {
         \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
       }
-      if (equals=2026-05-23) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
+      if (equals=2026-07-13) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {P. Rajagopalan Memorial Lecture};
       }
-      if (equals=2026-05-06) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {Exposure Visit};
-      }
-            if (equals=2026-05-15) {
+            if (equals=2026-06-05) {
         \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {Online MCI};
+      }
+                  if (equals=2026-07-17) {
+        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {MCI - Special Talk};
       }
       if (equals=2026-05-30) {
         \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {BMTC};
       }
-      if (equals=\year-05-31) {
+      if (equals=\year-07-05,) {
         \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
       }
        if (equals=\year-05-19) {
