@@ -76,7 +76,7 @@
 	if (equals=\year-07-05,) {
 			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
 		}
-  if (equals=\year-09-06,equals=2026-09-20,equals=2026-10-04,equals=2026-10-18,equals=2026-11-08,equals=2026-11-22,equals=2026-12-06,equals=2026-12-20) {
+  if (equals=\year-09-06,equals=2026-09-20,equals=2026-10-04,equals=2026-10-18,equals=2026-11-08,equals=2026-11-22,equals=2026-12-06,equals=2026-12-20,equals=2027-01-03,equals=2027-01-17) {
 			\draw[xkcdDarkTeal] ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {\textcolor{xkcdDarkTeal}{Maths $@$VITM}};
 		}
 	if (equals=\year-05-19) {
@@ -93,6 +93,23 @@
 			\calendar [
 				name=cal,
 				dates=2026-\m-01 to 2026-\m-last,
+         execute at begin day scope={\ifdate{day of month=1}{\tikzmonthcode}{}},
+         every month/.append style={anchor=base east,xshift=0em},
+				week list,
+				day text={\scriptsize\%d-},
+				day xshift=\textwidth/7,
+				day yshift=\boxHeight,
+				day letter headings
+			]
+			\calendarEvents
+		\end{tikzpicture}
+		\newpage
+	}
+\foreach \m in {01}
+	{\begin{tikzpicture}
+			\calendar [
+				name=cal,
+				dates=2027-\m-01 to 2027-\m-last,
          execute at begin day scope={\ifdate{day of month=1}{\tikzmonthcode}{}},
          every month/.append style={anchor=base east,xshift=0em},
 				week list,
