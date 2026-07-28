@@ -1,12 +1,15 @@
-% \documentclass[a5paper, landscape]{article}
-\documentclass[a4paper]{article}
+% compile using
+% xelatex og_calendar.tex
+\documentclass[a5paper, landscape]{article}
+% \documentclass[a4paper]{article}
 \usepackage{fontspec}
 \newfontfamily{\kan}[Script=Kannada]{Noto Sans Kannada}
 % \usepackage[margin=15mm,centering,includefoot]{geometry}
-\usepackage[margin=1in,centering,includefoot]{geometry}
+\usepackage[top=15mm,bottom=10mm,left=15mm,right=15mm,centering]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{calendar}
 \usepackage[none]{hyphenat}
+\usepackage{xkcdcolors}
 % Taking from https://tex.stackexchange.com/a/10199
 \makeatletter%
 \tikzoption{day headings}{\tikzstyle{day heading}=[#1]}
@@ -19,71 +22,87 @@
       \foreach \d/\l in {0/M,1/T,2/W,3/T,4/F,5/S,6/S} {
         \pgf@xa=\d\pgf@xa%
         \pgftransformxshift{\pgf@xa}%
-        \pgftransformyshift{3em}%
+        \pgftransformyshift{1.5em}%
         \node[every day,day heading]{\l};%
       } 
     }{}%
   }%
 ]
-
 \makeatother%
-
+\newlength{\boxHeight}
+\setlength{\boxHeight}{\dimexpr\textheight/7+1em\relax}
 \begin{document}
+\newcommand{\calendarEvents}{
+	if (equals=2026-08-11) {
+			\draw[xkcdBlue] ++({-\textwidth/14-1em},1em) rectangle ++({4*\textwidth/7},-\boxHeight) node[pos=.5, align=left, black] {\textcolor{xkcdBlue}{TNSCERT Curriculum and Textbook revision}};
+		}
+	if (equals=2026-08-15) {
+			\filldraw [red!20] ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black] {Holiday};
+		}
+  	if (equals=2026-08-03,equals=2026-08-10,equals=2026-08-17) {
+			\filldraw [xkcdGrey!80] ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black] {Comp-off};
+		}
+	if (equals=2026-08-26,
+		equals=2026-09-05,
+		equals=2026-10-01,
+		equals=2026-10-02,
+		equals=2026-10-20,
+		equals=2026-11-05,
+		equals=2026-12-25,) {
+			\filldraw [red!20] ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black] {Holiday};
+		}
+	if (equals=2026-08-28) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black] {{\kan ದೈನಂದಿನ ವಿಜ್ಞಾನ}\\Online MCI};
+		}
+	if (equals=2026-08-22,equals=2026-11-28,
+		equals=2026-11-14,
+		equals=2026-09-26,
+		equals=2026-09-12,
+		equals=2026-08-22) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
+		}
+	if (equals=2026-08-08) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle\\\textcolor{xkcdMagenta}{Quantum Inauguration}};
+		}
+	if (equals=2026-08-14,equals=2026-09-11) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {Online MCI};
+		}
+	if (equals=2026-08-18) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {MCI Monthly meeting};
+		}
+	if (equals=2026-08-01,equals=2026-10-03) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {BMTC};
+		}
+	if (equals=\year-07-05,) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
+		}
+  if (equals=\year-09-06,equals=2026-09-20,equals=2026-10-04,equals=2026-10-18,equals=2026-11-08,equals=2026-11-22,equals=2026-12-06,equals=2026-12-20) {
+			\draw[xkcdDarkTeal] ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {\textcolor{xkcdDarkTeal}{Maths $@$VITM}};
+		}
+	if (equals=\year-05-19) {
+			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {Maths Circle Interviews};
+		}
+	if (all) {
+			\draw[gray] ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight);
+		};
+}
 \pagestyle{empty}
 \centering
-\begin{tikzpicture}
-    \calendar [
-      name=cal,
-        dates=2026-07-01 to 2026-07-last,
-        week list,
-        day text={\footnotesize\%d-},
-        % day text={\%d-},
-        day xshift=\textwidth/7,
-        day yshift=\textwidth/7,
-        month label above centered,
-        month text={\Huge {\%mt} \%y-},
-        % month text={\Large {\%mt} \%y-},
-        day letter headings
-        ]
-      if (equals=2026-06-26) {
-        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
-      }
-      if (equals=2026-05-27) {
-        \filldraw [red!20] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {Holiday};
-      }
-      if (equals=2026-07-03) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black] {{\kan ದೈನಂದಿನ ವಿಜ್ಞಾನ}\\Online MCI};
-      }
-      if (equals=\year-07-11,equals=2026-07-25) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {ICTS-RRI Maths Circle};
-      }
-      if (equals=2026-07-13) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {P. Rajagopalan Memorial Lecture};
-      }
-            if (equals=2026-06-05) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {Online MCI};
-      }
-                  if (equals=2026-07-17) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {MCI - Special Talk};
-      }
-      if (equals=2026-05-30) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {BMTC};
-      }
-      if (equals=\year-07-05,) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
-      }
-       if (equals=\year-05-19) {
-        \draw ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7) node[pos=.5, align=left, black, text width=\textwidth/8] {Maths Circle Interviews};
-      }
-      if (all) {
-      \draw[gray] ++({-\textwidth/14-1em},2em) rectangle ++(\textwidth/7,-\textwidth/7);
-      };
-\end{tikzpicture}
-% \vspace{\fill}
-% \section*{Notes}
-% \vspace{\fill}
-% \begin{tikzpicture}
-%   \foreach \i in {1,2,...,5}
-%     \draw (0,1.25*\i)  -- (0.8*\textwidth,1.25*\i);
-% \end{tikzpicture}
+\foreach \m in {08,09,10,11,12}
+	{\begin{tikzpicture}
+			\calendar [
+				name=cal,
+				dates=2026-\m-01 to 2026-\m-last,
+         execute at begin day scope={\ifdate{day of month=1}{\tikzmonthcode}{}},
+         every month/.append style={anchor=base east,xshift=0em},
+				week list,
+				day text={\scriptsize\%d-},
+				day xshift=\textwidth/7,
+				day yshift=\boxHeight,
+				day letter headings
+			]
+			\calendarEvents
+		\end{tikzpicture}
+		\newpage
+	}
 \end{document}
