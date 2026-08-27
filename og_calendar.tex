@@ -79,6 +79,9 @@
 	if (equals=\year-08-30,) {
 			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
 		}
+	if (equals=2026-10-12,) {
+		\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {KwK};
+	}
   if (equals=\year-09-06,equals=2026-09-20,equals=2026-10-04,equals=2026-10-18,equals=2026-11-08,equals=2026-11-22,equals=2026-12-06,equals=2026-12-20,equals=2027-01-03,equals=2027-01-17) {
 			\draw[xkcdDarkTeal] ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {\textcolor{xkcdDarkTeal}{Maths $@$VITM}};
 		}
@@ -88,6 +91,9 @@
 	if (equals=2026-08-25) {
 			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {Exposure Visit};
 		}
+	if (equals=2027-02-06) {
+		\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {Open Day};
+	}
 	if (equals=2026-08-23) {
 			\draw ++({-\textwidth/14-1em},1em) rectangle ++(\textwidth/7,-\boxHeight) node[pos=.5, align=left, black, text width=\textwidth/8] {\textcolor{xkcdMagenta}{Q Cryptography $@$SGB}};
 		}
@@ -114,7 +120,7 @@
 		\end{tikzpicture}
 		\newpage
 	}
-\foreach \m in {01}
+\foreach \m in {01,02}
 	{\begin{tikzpicture}
 			\calendar [
 				name=cal,
